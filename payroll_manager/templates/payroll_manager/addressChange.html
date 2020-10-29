@@ -1,0 +1,36 @@
+{% extends 'payroll_manager/base.html' %}
+{% block content %}
+<div class="jumbotron" style="width: 80%;text-align: center;margin: 75px auto;">
+    <h1 class="display-6">Enter Address Details</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Building Detail:</label>
+          {{form.building_details}}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">road</label>
+          {{form.road}}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Landmark:</label>
+          {{form.landmark}}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">City:</label>
+          {{form.city}}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">State:</label>
+          {{form.state}}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Country:</label>
+          {{form.country}}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+{% endblock %}
+    

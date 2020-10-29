@@ -1,0 +1,24 @@
+{% extends 'payroll_manager/base.html' %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div{% if message.tags %} {% endif %} class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+{% endif %}
+<div class="jumbotron" style="width: 40%;text-align: center;margin: 75px auto;">
+    <h1 class="display-6">Login As Admin!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="user_id">Admin Id</label>
+          {{form.user_id}}
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          {{form.password}}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+
+{% endblock %}

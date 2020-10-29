@@ -1,0 +1,43 @@
+
+{% extends 'payroll_manager/base.html' %}
+{% block content %}
+<div class="jumbotron" style="width: 80%;text-align: center;margin: 75px auto;">
+    <h1 class="display-6">Enter User Details:</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="user_id">Employee Id:</label>
+          {{form.user_id}}
+        </div>
+        <div class="form-group">
+          <label for="password">Enter Password:</label>
+          {{form.password1}}
+        </div>
+        <div class="form-group">
+          <label for="password">Re-Enter Password:</label>
+          {{form.password2}}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Employee Name:</label>
+            {{formSub.employee_name}}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Department:</label>
+            {{formSub.department}}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Company:</label>
+            {{formSub.company}}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Dast of Join::</label>
+            {{formSub.employee_doj}}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Grade:</label>
+            {{formSub.grade}}
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock %}

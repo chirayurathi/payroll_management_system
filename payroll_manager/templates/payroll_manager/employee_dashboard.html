@@ -1,0 +1,70 @@
+{% extends 'payroll_manager/base.html' %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div{% if message.tags %} {% endif %} class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endif %}
+  <ul class="list-group" style="margin: 30px auto;">
+    <li class="list-group-item active">Employee's Info:</li>
+    <li class="list-group-item">Employee Name: {{ user_info.employee_name }}</li>
+    <li class="list-group-item">Department Name: {{user_info.department.department_name }}</li>
+    <li class="list-group-item">Company: {{ user_info.company.company_name }}</li>
+    <li class="list-group-item">Date Of Join: {{ user_info.employee_doj }}</li>
+    <li class="list-group-item">Grade: {{ user_info.grade.grade_name }}</li>
+  </ul> 
+  <ul class="list-group" style="margin: 30px auto;">
+    <li class="list-group-item active" style="display: flex;justify-content: space-between;align-items: center;"><span>Employee's Address Info:</span> <a class="btn active" href="{% url 'changeAddress' emp_id=request.user %}" style="border: 1px solid white;color:white;">Update</a></li>
+    <li class="list-group-item">Building: {{ user_info.address.building_details }}</li>
+    <li class="list-group-item">Road: {{user_info.address.road }}</li>
+    <li class="list-group-item">Landmark: {{ user_info.address.landmark }}</li>
+    <li class="list-group-item">City: {{ user_info.address.city }}</li>
+    <li class="list-group-item">State: {{ user_info.address.state.state_name }}</li>
+    <li class="list-group-item">Country: {{ user_info.address.country }}</li>
+  </ul> 
+  <ul class="list-group" style="margin: 30px auto;">
+    <li class="list-group-item active">Employee's Salary Info:</li>
+    <li class="list-group-item">Basic Amount: {{ user_paygrade.basic_amt }}</li>
+    <li class="list-group-item">Allowance: {{user_paygrade.da_amt }}</li>
+    <li class="list-group-item">Provident Fund: {{ user_paygrade.pf_amt }}</li>
+    <li class="list-group-item">Health Funds: {{ user_paygrade.medical_amt }}</li>
+    <li class="list-group-item">Gross Salary: {{ user_pay.gross_salary }}</li>
+    <li class="list-group-item">Gross Deduction: {{ user_pay.gross_dedn }}</li>
+    <li class="list-group-item">Net Salary: {{ user_pay.net_salary }}</li>
+  </ul> 
+  <div class="list-group" style="margin: 30px auto;">
+    <a href="#" class="list-group-item list-group-item-action active">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Employee's achievement list</h5>
+      </div>
+    </a>
+    {% for achieve in user_achieve %}
+    <a href="#" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">#{{achieve.achievement_id}}</h5>
+      </div>
+      <p class="mb-1">Achievement Type: {{ achieve.achievement_type }}</p>
+      <p class="mb-1">Achievement Date: {{ achieve.achievement_date }}</p>
+    </a>
+    {% endfor %}
+  </div>
+  <ul class="list-group" style="margin: 30px auto;">
+    <li href="#" class="list-group-item list-group-item-action active">
+      <div class="d-flex w-100 justify-content-between" style="align-items: center;">
+        <h5 class="mb-1">Employee's Off days list</h5>
+        <a class="btn active" href="{% url 'leaveApply' emp_id=request.user %}" style="border: 1px solid white;color:white;">Apply leave</a>
+      </div>
+    </li>
+    {% for leave in user_leave %}
+    <a href="#" class="list-group-item list-group-item-action {% if leave.is_approved == 1 %} list-group-item-success {% elif leave.is_approved == 0 %} {% else %} list-group-item-danger {% endif %}">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">#{{leave.leave_id}}</h5>
+      </div>
+      <p class="mb-1">Leave Date: {{ leave.leave_date }}</p>
+      <p class="mb-1">Leave Type: {{ leave.leave_type }}</p>
+      <p class="mb-1">Financial Year: {{ leave.fin_year }}</p>
+      <p class="mb-1">Status: {%if leave.is_approved == 1 %} Approved {% elif leave.is_approved == 0 %} Not Approved {% else %} Rejected {% endif %}</p>
+    </a>
+    {% endfor %}
+  </ul>
+{% endblock %}
