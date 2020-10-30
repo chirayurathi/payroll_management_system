@@ -33,3 +33,23 @@ A company payroll management system made with Django and MySQL which lets the ad
 ```
 python manage.py runserver
 ```
+* If successful , the site will be running on [localhost:8000/](localhost:8000)
+## Admin credentials:
+|   Admin Id    |   Password    |
+| ------------- | ------------- |
+|       0       |   password    |
+
+## employee credentials:
+|  employee Id  |   Password    |
+| ------------- | ------------- |
+|       1       |   password    |
+|       2       |   password    |
+|       3       |   password    |
+|       4       |   password    |
+|       5       |   password    |
+|       6       |   password    |
+|       7       |   password    |
+|       8       |   password    |
+|       9       |   password    |
+|       10      |   password    |
+|       11      |   password    |
